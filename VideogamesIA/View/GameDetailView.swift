@@ -8,53 +8,40 @@
 import SwiftUI
 
 struct GameDetailView: View {
+    @EnvironmentObject var viewModel: GameViewModel
     let game: Game
-
+    
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
-                AsyncImage(url: URL(string: game.thumbnail)) { image in
-                    image.resizable()
-                } placeholder: {
-                    ProgressView()
-                }
-                .frame(height: 200)
-                .cornerRadius(12)
-
-                Text(game.title)
-                    .font(.largeTitle)
-                    .bold()
-
-                Text("Genre: \(game.genre)")
-                    .font(.headline)
-                    .foregroundColor(.secondary)
-
-                Text("Platform: \(game.platform)")
-                    .font(.headline)
-                    .foregroundColor(.secondary)
-
-                Text("Publisher: \(game.publisher)")
-                    .font(.subheadline)
-
-                Text("Developer: \(game.developer)")
-                    .font(.subheadline)
-
-                Text("Release Date: \(game.releaseDate)")
-                    .font(.subheadline)
-
-                Text(game.description)
-                    .padding(.top)
-
-                Link("View More", destination: URL(string: game.profileURL)!)
-                    .font(.headline)
-                    .foregroundColor(.blue)
-                    .padding(.top)
+        VStack {
+            AsyncImage(url: URL(string: game.thumbnail)) { image in
+                image.resizable()
+                    .scaledToFit()
+            } placeholder: {
+                ProgressView()
             }
+            .frame(height: 200)
+            
+            Text(game.title)
+                .font(.largeTitle)
+                .bold()
+                .padding()
+            
+            Text(game.description)
+                .padding()
+            
+            Spacer()
+            
+            Button("Delete Game") {
+                viewModel.deleteGame(game)
+            }
+            .foregroundColor(.red)
             .padding()
         }
-        .navigationTitle("Game Detail")
+        .navigationTitle(game.title)
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
+
 
 struct GameDetailView_Previews: PreviewProvider {
     static var previews: some View {
