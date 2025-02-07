@@ -50,4 +50,11 @@ class GameViewModel: ObservableObject {
         errorMessage = error.localizedDescription
         print("Error: \(error.localizedDescription)")
     }
+
+    func searchGames(byTitle title: String) {
+        let filteredGames = repository.fetchMappedGames().filter {
+            $0.title.lowercased().contains(title.lowercased())
+        }
+        games = filteredGames
+    }
 }
