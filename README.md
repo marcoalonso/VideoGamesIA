@@ -1,48 +1,42 @@
 VideoGamesIA
-Esta aplicación permite a los usuarios gestionar un catálogo de videojuegos descargados desde una API pública. La app ofrece una interfaz intuitiva y funcional, desarrollada en SwiftUI utilizando la arquitectura MVVM con persistencia local mediante CoreData.
+This application allows users to manage a catalog of video games downloaded from a public API. The app offers an intuitive and functional interface, developed in SwiftUI using the MVVM architecture with local persistence through CoreData.
 
-*Características principales*
+*Main features*
 
+1.- Initial Load
+Automatic download of the video game catalog from the API:
+https://www.freetogame.com/api/games
+The data is stored locally in a database for offline access.
 
-1.- Carga Inicial
-Descarga automática del catálogo de videojuegos desde la API:
-https://www.freetogame.com/api/games 
-Los datos se almacenan localmente en una base de datos para acceso offline.
+2.- Search and Filter Screen
+Search by video game name or category.
+Results with automatic suggestions.
+Detailed navigation of the selected video game.
 
+3.- Video Game Detail Screen
+Display of detailed information about the video game (title, image, description, etc.).
+Options to edit and delete (logical deletion) a record.
 
-2.-Pantalla de Búsqueda y Filtros
-Búsqueda por nombre del videojuego o categoría.
-Resultados con sugerencias automáticas.
-Navegación al detalle del videojuego seleccionado.
+4.- Data Persistence
+Video games are stored in CoreData for fast and efficient access.
+Implementation of logical deletion to keep records in the database.
 
+5.- Interface
+Responsive and accessible UI, designed with SwiftUI.
+Real-time updates when searching or changing records.
 
-3.- Pantalla de Detalle del Videojuego
-Visualización de información detallada del videojuego (título, imagen, descripción, etc.).
-Opciones para editar y eliminar (eliminación lógica) un registro.
+*Architecture*
+Pattern: MVVM (Model-View-ViewModel).
+Persistence: CoreData.
+API consumption: URLSession with Combine.
+Error management: Use of operators such as catch in Combine.
 
+-Installation-
+git clone https://github.com/your-user/game-catalog-app.git
 
-4.- Persistencia de Datos
-Los videojuegos se almacenan en CoreData para acceso rápido y eficiente.
-Implementación de eliminación lógica para conservar los registros en la base de datos.
+Unit tests implemented with XCTest to validate the ViewModel logic and correct data management.
 
-
-5.- Interfaz
-UI responsiva y accesible, diseñada con SwiftUI.
-Actualizaciones en tiempo real al realizar búsquedas o cambios en los registros.
-
-
-*Arquitectura*
-Patrón: MVVM (Model-View-ViewModel).
-Persistencia: CoreData.
-Consumo de API: URLSession con Combine.
-Gestión de errores: Uso de operadores como catch en Combine.
-
--Instalación-
-git clone https://github.com/tu-usuario/game-catalog-app.git
-
-Pruebas unitarias implementadas con XCTest para validar la lógica del ViewModel y la correcta gestión de datos.
-
-Tecnologías utilizadas:
+Technologies used:
 - Swift 5
 - SwiftUI
 - Combine
