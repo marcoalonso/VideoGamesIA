@@ -11,12 +11,13 @@ import CoreData
 @main
 struct VideogamesIAApp: App {
     let persistenceController = PersistenceController.shared
+       let gameViewModel = GameViewModel()
 
     var body: some Scene {
         WindowGroup {
-            GameListView()
+            GameTabView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
-                .environmentObject(GameViewModel()) 
+                .environmentObject(gameViewModel)
         }
     }
 }
