@@ -14,8 +14,9 @@ struct VideogamesIAApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            GameListView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(GameViewModel()) 
         }
     }
 }
