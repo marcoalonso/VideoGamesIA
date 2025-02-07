@@ -36,4 +36,16 @@ class GameRepository {
             print("Failed to save game: \(error.localizedDescription)")
         }
     }
+    
+    func deleteAllGames() {
+        let request: NSFetchRequest<NSFetchRequestResult> = GameEntity.fetchRequest()
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: request)
+
+        do {
+            try context.execute(deleteRequest)
+            try context.save()
+        } catch {
+            print("Failed to delete all games: \(error.localizedDescription)")
+        }
+    }
 }
