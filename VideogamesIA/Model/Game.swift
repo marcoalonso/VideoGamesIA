@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Game: Identifiable {
+struct Game: Identifiable, Equatable {
     let id: Int
     let title: String
     let thumbnail: String

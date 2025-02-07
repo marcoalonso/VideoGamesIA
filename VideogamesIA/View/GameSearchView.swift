@@ -12,6 +12,12 @@ struct GameSearchView: View {
     @State private var searchText: String = ""
     @State private var selectedFilter: SearchFilter = .byTitle
 
+    let gridColumns = [
+        GridItem(.flexible()),
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
+
     var body: some View {
         NavigationView {
             VStack {
@@ -30,14 +36,22 @@ struct GameSearchView: View {
                     Image(.search)
                         .resizable()
                         .frame(width: 100, height: 100)
+                        .foregroundColor(.gray)
                 } else {
-                    List(filteredSuggestions, id: \.id) { game in
-                        NavigationLink(destination: GameDetailView(game: game)) {
-                            GameRowView(game: game)
+                    ScrollView {
+                        LazyVGrid(columns: gridColumns, spacing: 16) {
+                            ForEach(filteredSuggestions, id: \.id) { game in
+                                NavigationLink(destination: GameDetailView(game: game)) {
+                                    GameGridItemView(game: game)
+                                        .transition(.scale.combined(with: .opacity))
+                                }
+                                .animation(.easeInOut(duration: 0.3), value: filteredSuggestions)
+                            }
                         }
+                        .padding()
                     }
                 }
-                
+
                 Spacer()
             }
             .navigationTitle("Search Videogames")
@@ -53,11 +67,6 @@ struct GameSearchView: View {
             return viewModel.games.filter { $0.genre.lowercased().contains(searchText.lowercased()) }
         }
     }
-}
-
-enum SearchFilter {
-    case byTitle
-    case byCategory
 }
 
 struct GameSearchView_Previews: PreviewProvider {
