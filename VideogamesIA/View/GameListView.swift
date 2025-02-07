@@ -10,6 +10,11 @@ import SwiftUI
 struct GameListView: View {
     @EnvironmentObject var viewModel: GameViewModel
 
+    let gridColumns = [
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
+
     var body: some View {
         NavigationView {
             VStack {
@@ -37,12 +42,15 @@ struct GameListView: View {
                             .padding()
                     }
                 } else {
-                    List {
-                        ForEach(viewModel.games) { game in
-                            NavigationLink(destination: GameDetailView(game: game)) {
-                                GameRowView(game: game)
+                    ScrollView {
+                        LazyVGrid(columns: gridColumns, spacing: 16) {
+                            ForEach(viewModel.games) { game in
+                                NavigationLink(destination: GameDetailView(game: game)) {
+                                    GameGridItemView(game: game, imageSize: CGSize(width: 180, height: 140), containerWidth: 160)
+                                }
                             }
                         }
+                        .padding()
                     }
                     .refreshable {
                         viewModel.loadGamesFromAPI()
@@ -57,7 +65,8 @@ struct GameListView: View {
                         viewModel.loadGamesFromAPI()
                     }) {
                         Image(systemName: "arrow.clockwise")
-                            .font(.title2)
+                            .font(.title3)
+                            .foregroundStyle(.green)
                     }
                 }
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -65,7 +74,8 @@ struct GameListView: View {
                         viewModel.deleteAllGames()
                     }) {
                         Image(systemName: "trash")
-                            .font(.title2)
+                            .font(.title3)
+                            .foregroundStyle(.red)
                     }
                 }
             }
