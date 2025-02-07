@@ -25,22 +25,8 @@ struct GameListView: View {
                         .padding()
                 } else {
                     List(viewModel.games) { game in
-                        HStack {
-                            AsyncImage(url: URL(string: game.thumbnail)) { image in
-                                image.resizable()
-                            } placeholder: {
-                                ProgressView()
-                            }
-                            .frame(width: 60, height: 60)
-                            .cornerRadius(8)
-
-                            VStack(alignment: .leading) {
-                                Text(game.title)
-                                    .font(.headline)
-                                Text(game.genre)
-                                    .font(.subheadline)
-                                    .foregroundColor(.secondary)
-                            }
+                        NavigationLink(destination: GameDetailView(game: game)) {
+                            GameRowView(game: game)
                         }
                     }
                 }
