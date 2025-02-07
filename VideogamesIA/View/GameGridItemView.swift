@@ -14,6 +14,8 @@ enum SearchFilter {
 
 struct GameGridItemView: View {
     let game: Game
+    var imageSize: CGSize = CGSize(width: 120, height: 120)
+    var containerWidth: CGFloat = 140
 
     var body: some View {
         VStack {
@@ -23,15 +25,39 @@ struct GameGridItemView: View {
             } placeholder: {
                 ProgressView()
             }
-            .frame(width: 100, height: 100)
+            .frame(width: imageSize.width, height: imageSize.height)
             .clipShape(RoundedRectangle(cornerRadius: 12))
 
             Text(game.title)
-                .font(.caption)
+                .font(.system(size: 10).bold())
                 .lineLimit(1)
+                .foregroundStyle(.black)
                 .multilineTextAlignment(.center)
         }
-        .frame(width: 110)
+        .frame(width: containerWidth)
     }
 }
+
+struct GameGridItemView_Previews: PreviewProvider {
+    static var previews: some View {
+        GameGridItemView(
+            game: Game(
+                id: 1,
+                title: "Tarisland",
+                thumbnail: "https://www.freetogame.com/g/582/thumbnail.jpg",
+                description: "A cross-platform MMORPG developed by Tencent.",
+                gameURL: "https://www.freetogame.com/open/tarisland",
+                genre: "MMORPG",
+                platform: "PC",
+                publisher: "Tencent",
+                developer: "Level Infinite",
+                releaseDate: "2024-06-22",
+                profileURL: "https://www.freetogame.com/tarisland"
+            ),
+            imageSize: CGSize(width: 100, height: 100),
+            containerWidth: 120
+        )
+    }
+}
+   
 
