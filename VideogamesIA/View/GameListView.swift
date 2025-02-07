@@ -25,7 +25,9 @@ struct GameListView: View {
                         .padding()
                 } else {
                     List(viewModel.games) { game in
-                        GameRowView(game: game)
+                        NavigationLink(destination: GameDetailView(game: game)) {
+                            GameRowView(game: game)
+                        }
                     }
                 }
             }
