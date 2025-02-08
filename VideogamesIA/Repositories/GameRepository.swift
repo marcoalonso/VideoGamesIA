@@ -64,4 +64,25 @@ class GameRepository {
             print("Failed to delete game: \(error.localizedDescription)")
         }
     }
+    
+    func updateGame(id: Int, title: String, genre: String, platform: String, releaseDate: String, developer: String, publisher: String, description: String) {
+        let request: NSFetchRequest<GameEntity> = GameEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "id == %d", id)
+        
+        do {
+            if let gameEntity = try context.fetch(request).first {
+                gameEntity.title = title
+                gameEntity.genre = genre
+                gameEntity.platform = platform
+                gameEntity.releaseDate = releaseDate
+                gameEntity.developer = developer
+                gameEntity.publisher = publisher
+                gameEntity.shortDesc = description
+                try context.save()
+            }
+        } catch {
+            print("Failed to update game: \(error)")
+        }
+    }
+
 }
