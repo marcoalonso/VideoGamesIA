@@ -18,7 +18,7 @@ struct GameDetailView: View {
 
     var body: some View {
         ScrollView {
-            VStack(spacing: 16) {
+            VStack(spacing: 8) {
                 AsyncImage(url: URL(string: game.thumbnail)) { image in
                     image.resizable()
                         .scaledToFill()
@@ -37,7 +37,7 @@ struct GameDetailView: View {
                     ProgressView()
                 }
 
-                VStack(spacing: 16) {
+                VStack(spacing: 8) {
                     GameDetailInfoRow(iconName: "tag", text: "Genre: \(game.genre)")
                     GameDetailInfoRow(iconName: "desktopcomputer", text: "Platform: \(game.platform)")
                     GameDetailInfoRow(iconName: "calendar", text: "Release Date: \(game.releaseDate)")
