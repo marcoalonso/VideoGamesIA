@@ -17,3 +17,7 @@ struct SafariView: UIViewControllerRepresentable {
 
     func updateUIViewController(_ uiViewController: SFSafariViewController, context: Context) {}
 }
+
+extension URL: @retroactive Identifiable {
+    public var id: String { absoluteString }
+}
