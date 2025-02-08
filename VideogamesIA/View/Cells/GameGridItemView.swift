@@ -32,7 +32,7 @@ struct GameGridItemView: View {
             Text(game.title)
                 .font(.system(size: 10).bold())
                 .lineLimit(1)
-                .foregroundStyle(.black)
+                .foregroundStyle(.primary)
                 .multilineTextAlignment(.center)
             
             if showGenre {
