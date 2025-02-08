@@ -6,15 +6,20 @@
 //
 
 import SwiftUI
+import CoreData
 
 @main
 struct VideogamesIAApp: App {
+    @AppStorage("isDarkMode") private var isDarkMode: Bool = false
     let persistenceController = PersistenceController.shared
+    let gameViewModel = GameViewModel()
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            GameTabView()
+                .preferredColorScheme(isDarkMode ? .dark : .light)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(gameViewModel)
         }
     }
 }
