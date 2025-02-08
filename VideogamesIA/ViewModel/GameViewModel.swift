@@ -66,7 +66,7 @@ class GameViewModel: ObservableObject {
 
     func deleteGame(_ game: Game) {
         repository.deleteGame(byID: game.id)
-        games = repository.fetchMappedGames()
+        loadGamesFromDatabase()
     }
 
     func deleteAllGames() {
@@ -78,5 +78,23 @@ class GameViewModel: ObservableObject {
         games = repository.fetchMappedGames().filter {
             $0.title.lowercased().contains(title.lowercased())
         }
+    }
+    
+    func updateGame(game: Game, newTitle: String, newGenre: String, newPlatform: String, newReleaseDate: String, newDeveloper: String, newPublisher: String, newDescription: String) {
+        repository.updateGame(
+            id: game.id,
+            title: newTitle,
+            genre: newGenre,
+            platform: newPlatform,
+            releaseDate: newReleaseDate,
+            developer: newDeveloper,
+            publisher: newPublisher,
+            description: newDescription
+        )
+        loadGamesFromDatabase()
+    }
+    
+    private func loadGamesFromDatabase() {
+        games = repository.fetchMappedGames()
     }
 }
