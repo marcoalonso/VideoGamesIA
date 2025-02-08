@@ -19,6 +19,11 @@ struct GameTabView: View {
                 .tabItem {
                     Label("Search", systemImage: "magnifyingglass")
                 }
+            
+            SettingsView()
+                .tabItem {
+                    Label("Settings", systemImage: "gearshape")
+                }
         }
     }
 }
