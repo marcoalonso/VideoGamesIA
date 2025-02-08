@@ -42,7 +42,7 @@ struct GameSearchView: View {
                         LazyVGrid(columns: gridColumns, spacing: 16) {
                             ForEach(filteredSuggestions, id: \.id) { game in
                                 NavigationLink(destination: GameDetailView(game: game)) {
-                                    GameGridItemView(game: game)
+                                    GameGridItemView(game: game, showGenre: selectedFilter == .byCategory)
                                         .transition(.scale.combined(with: .opacity))
                                 }
                                 .animation(.easeInOut(duration: 0.3), value: filteredSuggestions)

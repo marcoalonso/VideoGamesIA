@@ -14,6 +14,7 @@ enum SearchFilter {
 
 struct GameGridItemView: View {
     let game: Game
+    var showGenre: Bool = false
     var imageSize: CGSize = CGSize(width: 120, height: 120)
     var containerWidth: CGFloat = 140
 
@@ -33,6 +34,15 @@ struct GameGridItemView: View {
                 .lineLimit(1)
                 .foregroundStyle(.black)
                 .multilineTextAlignment(.center)
+            
+            if showGenre {
+                Text(game.genre)
+                    .font(.footnote)
+                    .foregroundColor(.secondary)
+                    .lineLimit(1)
+                    .multilineTextAlignment(.center)
+            }
+
         }
         .frame(width: containerWidth)
     }

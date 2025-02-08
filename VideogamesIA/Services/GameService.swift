@@ -11,7 +11,8 @@ import Combine
 class GameService {
     func fetchGames() -> AnyPublisher<[GameDTO], VideoGameNetworkError> {
         guard let url = URL(string: "https://www.freetogame.com/api/games") else {
-            return Fail(error: VideoGameNetworkError.invalidURL).eraseToAnyPublisher()
+            return Fail(error: VideoGameNetworkError.invalidURL)
+                .eraseToAnyPublisher()
         }
 
         return URLSession.shared.dataTaskPublisher(for: url)
@@ -24,12 +25,12 @@ class GameService {
             }
             .decode(type: [GameDTO].self, decoder: JSONDecoder())
             .mapError { error in
-                if let decodingError = error as? DecodingError {
-                    return VideoGameNetworkError.decodingError
+                if error is DecodingError {
+                    return .decodingError
                 } else if let networkError = error as? VideoGameNetworkError {
                     return networkError
                 } else {
-                    return VideoGameNetworkError.unknownError
+                    return .unknownError
                 }
             }
             .receive(on: DispatchQueue.main)
