@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		6CBC90202D5833DA00322B96 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 6CBC901F2D5833DA00322B96 /* Kingfisher */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		6CBC8FC32D58296000322B96 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -39,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CBC90202D5833DA00322B96 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +95,7 @@
 			);
 			name = VideogamesIA;
 			packageProductDependencies = (
+				6CBC901F2D5833DA00322B96 /* Kingfisher */,
 			);
 			productName = VideogamesIA;
 			productReference = 6CBC8E6E2D5681D600322B96 /* VideogamesIA.app */;
@@ -146,6 +152,9 @@
 			);
 			mainGroup = 6CBC8E652D5681D600322B96;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				6CBC901E2D58338400322B96 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 6CBC8E6F2D5681D600322B96 /* Products */;
 			projectDirPath = "";
@@ -444,6 +453,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6CBC901E2D58338400322B96 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6CBC901F2D5833DA00322B96 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6CBC901E2D58338400322B96 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6CBC8E662D5681D600322B96 /* Project object */;
 }
