@@ -60,4 +60,20 @@ struct GameMapper {
     static func fromEntities(_ entities: [GameEntity]) -> [Game] {
         return entities.map { fromEntity($0) }
     }
+    
+    static func toDTO(from game: Game) -> GameDTO {
+        return GameDTO(
+            id: game.id,
+            title: game.title,
+            thumbnail: game.thumbnail,
+            shortDescription: game.description,
+            gameURL: game.gameURL,
+            genre: game.genre,
+            platform: game.platform,
+            publisher: game.publisher,
+            developer: game.developer,
+            releaseDate: game.releaseDate,
+            profileURL: game.profileURL
+        )
+    }
 }
