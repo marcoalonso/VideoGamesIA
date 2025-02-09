@@ -45,7 +45,10 @@ struct GameListView: View {
                     ScrollView {
                         LazyVGrid(columns: gridColumns, spacing: 16) {
                             ForEach(viewModel.games) { game in
-                                NavigationLink(destination: GameDetailView(game: game)) {
+                                NavigationLink(
+                                    destination: GameDetailView(game: game, repository: viewModel.repository)
+                                        
+                                ) {
                                     GameGridItemView(game: game, imageSize: CGSize(width: 180, height: 140), containerWidth: 160)
                                 }
                             }
@@ -90,6 +93,8 @@ struct GameListView: View {
 struct GameListView_Previews: PreviewProvider {
     static var previews: some View {
         GameListView()
-            .environmentObject(GameViewModel())
+            .environmentObject(
+                GameViewModel(repository: MockGameRepository(),
+                              service: MockGameService()))
     }
 }
