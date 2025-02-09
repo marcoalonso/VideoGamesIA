@@ -12,17 +12,7 @@ import CoreData
 struct VideogamesIAApp: App {
     @AppStorage("isDarkMode") private var isDarkMode: Bool = false
     let persistenceController = PersistenceController.shared
-
-    let repository: GameRepository
-    let service: GameService
-    let gameViewModel: GameViewModel
-
-    init() {
-        let context = persistenceController.container.viewContext
-        self.repository = GameRepository(context: context)
-        self.service = GameService()
-        self.gameViewModel = GameViewModel(repository: repository, service: service)
-    }
+    let gameViewModel = GameViewModel()
 
     var body: some Scene {
         WindowGroup {
@@ -33,4 +23,3 @@ struct VideogamesIAApp: App {
         }
     }
 }
-

@@ -7,12 +7,8 @@
 
 import CoreData
 
-class GameRepository: GameRepositoryProtocol {
-    private let context: NSManagedObjectContext
-    
-    init(context: NSManagedObjectContext = PersistenceController.shared.container.viewContext) {
-        self.context = context
-    }
+class GameRepository {
+    private let context = PersistenceController.shared.container.viewContext
 
     func fetchGames() -> [GameEntity] {
         let request: NSFetchRequest<GameEntity> = GameEntity.fetchRequest()

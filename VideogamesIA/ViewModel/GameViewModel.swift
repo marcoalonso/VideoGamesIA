@@ -13,14 +13,9 @@ class GameViewModel: ObservableObject {
     @Published var errorMessage: String? = nil
     @Published var isLoading: Bool = false
     
-    let repository: GameRepositoryProtocol
-    private let service: GameServiceProtocol
+    private let service = GameService()
+    private let repository = GameRepository()
     private var cancellables = Set<AnyCancellable>()
-    
-    init(repository: GameRepositoryProtocol, service: GameServiceProtocol) {
-        self.repository = repository
-        self.service = service
-    }
 
     func loadGames() {
         let cachedGames = repository.fetchMappedGames()
@@ -48,6 +43,7 @@ class GameViewModel: ObservableObject {
                     }
                 }
             }, receiveValue: { [weak self] gameDTOs in
+                print("Debug: gameDTOs \(gameDTOs.count)")
                 DispatchQueue.main.async {
                     guard let self = self else { return }
 
@@ -65,10 +61,40 @@ class GameViewModel: ObservableObject {
 
     private func handleError(_ error: VideoGameNetworkError) {
         errorMessage = error.localizedDescription
+        print("Error: \(error.localizedDescription)")
     }
-    
+
+    func deleteGame(_ game: Game) {
+        repository.deleteGame(byID: game.id)
+        loadGamesFromDatabase()
+    }
+
     func deleteAllGames() {
         repository.deleteAllGames()
         games.removeAll()
+    }
+
+    func searchGames(byTitle title: String) {
+        games = repository.fetchMappedGames().filter {
+            $0.title.lowercased().contains(title.lowercased())
+        }
+    }
+    
+    func updateGame(game: Game, newTitle: String, newGenre: String, newPlatform: String, newReleaseDate: String, newDeveloper: String, newPublisher: String, newDescription: String) {
+        repository.updateGame(
+            id: game.id,
+            title: newTitle,
+            genre: newGenre,
+            platform: newPlatform,
+            releaseDate: newReleaseDate,
+            developer: newDeveloper,
+            publisher: newPublisher,
+            description: newDescription
+        )
+        loadGamesFromDatabase()
+    }
+    
+    private func loadGamesFromDatabase() {
+        games = repository.fetchMappedGames()
     }
 }

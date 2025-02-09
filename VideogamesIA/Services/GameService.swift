@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class GameService: GameServiceProtocol {
+class GameService {
     func fetchGames() -> AnyPublisher<[GameDTO], VideoGameNetworkError> {
         guard let url = URL(string: "https://www.freetogame.com/api/games") else {
             return Fail(error: VideoGameNetworkError.invalidURL)

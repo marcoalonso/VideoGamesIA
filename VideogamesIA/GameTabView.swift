@@ -30,5 +30,5 @@ struct GameTabView: View {
 
 #Preview {
     GameTabView()
-        .environmentObject(GameViewModel(repository: MockGameRepository(), service: MockGameService()))
+        .environmentObject(GameViewModel())
 }
