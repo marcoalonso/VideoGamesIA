@@ -42,17 +42,20 @@ class GameRepository: GameRepositoryProtocol {
     }
     
     func deleteAllGames() {
-        let request: NSFetchRequest<NSFetchRequestResult> = GameEntity.fetchRequest()
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: request)
+        let request: NSFetchRequest<GameEntity> = GameEntity.fetchRequest()
 
         do {
-            try context.execute(deleteRequest)
+            let games = try context.fetch(request)
+            for game in games {
+                context.delete(game)
+            }
             try context.save()
             print("Debug: deleteAllGames!")
         } catch {
             print("Failed to delete all games: \(error.localizedDescription)")
         }
     }
+
     
     func deleteGame(byID id: Int) {
         let request: NSFetchRequest<GameEntity> = GameEntity.fetchRequest()
