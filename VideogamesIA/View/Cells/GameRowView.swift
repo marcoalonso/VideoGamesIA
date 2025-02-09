@@ -6,17 +6,18 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct GameRowView: View {
     let game: Game
 
     var body: some View {
         HStack {
-            AsyncImage(url: URL(string: game.thumbnail)) { image in
-                image.resizable()
-            } placeholder: {
-                ProgressView()
-            }
+            
+            KFImage(URL(string: game.thumbnail))
+                .placeholder {
+                    ProgressView()
+                }
             .frame(width: 60, height: 60)
             .cornerRadius(8)
 

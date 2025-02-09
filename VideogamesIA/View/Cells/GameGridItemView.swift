@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 enum SearchFilter {
     case byTitle
@@ -20,12 +21,10 @@ struct GameGridItemView: View {
 
     var body: some View {
         VStack {
-            AsyncImage(url: URL(string: game.thumbnail)) { image in
-                image.resizable()
-                    .scaledToFill()
-            } placeholder: {
-                ProgressView()
-            }
+            KFImage(URL(string: game.thumbnail))
+                .placeholder {
+                    ProgressView()
+                }
             .frame(width: imageSize.width, height: imageSize.height)
             .clipShape(RoundedRectangle(cornerRadius: 12))
 

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SafariServices
+import Kingfisher
 
 struct GameDetailView: View {
     @StateObject private var viewModel: GameDetailViewModel
@@ -24,24 +25,23 @@ struct GameDetailView: View {
         ScrollView {
             VStack(spacing: 8) {
                 if let game = viewModel.game {
-                    AsyncImage(url: URL(string: game.thumbnail)) { image in
-                        image.resizable()
-                            .scaledToFill()
-                            .frame(height: 220)
-                            .clipShape(RoundedRectangle(cornerRadius: 12))
-                            .shadow(radius: 6)
-                            .padding(.horizontal, 12)
-                            .scaleEffect(viewModel.isAnimating ? 1 : 0.75)
-                            .animation(.easeInOut(duration: 0.5), value: viewModel.isAnimating)
-                            .onAppear {
-                                withAnimation {
-                                    viewModel.isAnimating = true
-                                }
+                    KFImage(URL(string: game.thumbnail))
+                        .placeholder {
+                            ProgressView()
+                        }
+                        .resizable()
+                        .scaledToFill()
+                        .frame(height: 220)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .shadow(radius: 6)
+                        .padding(.horizontal, 12)
+                        .scaleEffect(viewModel.isAnimating ? 1 : 0.75)
+                        .animation(.easeInOut(duration: 0.5), value: viewModel.isAnimating)
+                        .onAppear {
+                            withAnimation {
+                                viewModel.isAnimating = true
                             }
-                    } placeholder: {
-                        ProgressView()
-                    }
-                    
+                        }
                     VStack(spacing: 8) {
                         GameDetailInfoRow(iconName: "tag", text: "Genre: \(game.genre)")
                         GameDetailInfoRow(iconName: "desktopcomputer", text: "Platform: \(game.platform)")
