@@ -41,7 +41,7 @@ struct GameSearchView: View {
                     ScrollView {
                         LazyVGrid(columns: gridColumns, spacing: 16) {
                             ForEach(filteredSuggestions, id: \.id) { game in
-                                NavigationLink(destination: GameDetailView(game: game)) {
+                                NavigationLink(destination: GameDetailView(game: game, repository: viewModel.repository)) {
                                     GameGridItemView(game: game, showGenre: selectedFilter == .byCategory)
                                         .transition(.scale.combined(with: .opacity))
                                 }
@@ -54,6 +54,9 @@ struct GameSearchView: View {
 
                 Spacer()
             }
+            .onAppear(perform: {
+                searchText = ""
+            })
             .navigationTitle("Search Videogames")
             .navigationBarTitleDisplayMode(.inline)
         }
@@ -72,6 +75,8 @@ struct GameSearchView: View {
 struct GameSearchView_Previews: PreviewProvider {
     static var previews: some View {
         GameSearchView()
-            .environmentObject(GameViewModel())
+            .environmentObject(
+                GameViewModel(repository: MockGameRepository(),
+                              service: MockGameService()))
     }
 }

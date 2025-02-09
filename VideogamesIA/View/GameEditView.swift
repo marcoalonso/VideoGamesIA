@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GameEditView: View {
-    @EnvironmentObject var viewModel: GameViewModel
+    @EnvironmentObject var viewModel: GameEditViewModel
     @Environment(\.presentationMode) var presentationMode
     @State private var title: String
     @State private var genre: String
