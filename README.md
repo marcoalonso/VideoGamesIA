@@ -31,9 +31,6 @@ Persistence: CoreData.
 API consumption: URLSession with Combine.
 Error management: Use of operators such as catch in Combine.
 
--Installation-
-git clone https://github.com/your-user/game-catalog-app.git
-
 Unit tests implemented with XCTest to validate the ViewModel logic and correct data management.
 
 Technologies used:
@@ -42,3 +39,41 @@ Technologies used:
 - Combine
 - CoreData
 - Xcode 16.1
+
+![image](https://github.com/user-attachments/assets/fe1a27a7-64fe-410f-a411-9e5902f618bb)
+
+GameDetail
+![image](https://github.com/user-attachments/assets/bf24f44f-ffb2-4353-88c5-5a1f22352242)
+
+
+
+EditGame
+![image](https://github.com/user-attachments/assets/83575317-1d10-4147-86ed-fd911576a082)
+
+![image](https://github.com/user-attachments/assets/0b989d91-f11c-440a-8b33-6995e43ebc34)
+
+
+You can visit the website
+![image](https://github.com/user-attachments/assets/437ddbe3-5e63-4370-a814-ff42aee1e931)
+
+and the profile website
+![image](https://github.com/user-attachments/assets/0d0da281-4d43-4eb1-8aa0-a7face6559e3)
+
+
+also can delete the game
+![image](https://github.com/user-attachments/assets/ac87579e-7635-41ec-bc8e-819324dac758)
+
+
+You can search by name and by category
+![image](https://github.com/user-attachments/assets/ba6c462d-2ffc-44ab-a71a-4c10aedb5fe8)
+
+![image](https://github.com/user-attachments/assets/f76cdc2f-74a6-4dc5-8b8a-9d3d0bfa87aa)
+
+Finally you can enable DarkMode
+![image](https://github.com/user-attachments/assets/b68f91bf-3fcc-402b-8c8d-d19c7539f13b)
+
+
+
+
+
+
